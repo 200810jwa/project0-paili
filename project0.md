@@ -37,3 +37,5 @@ Leveraging Java 8 and following Test Driven Development, create an application t
   * Interest can accumulate
 * Try running your application outside of the IDE as a jar
 * Look into password hashing
+
+## Presentation will focus primarily on demoing features

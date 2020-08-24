@@ -1,0 +1,70 @@
+User:
+	private String username;
+	private String passhash;
+	private String email;
+	private long SSN;
+	private String firstName;
+	private String lastName;
+	private String phoneNumber;
+	private String address;
+	private int auth = -1;
+	private int FICO = 350;
+	private String employeeID;
+	private double salary;
+BankAccount:
+	private String accountID;
+	private double balance = 0;
+	private User owner;
+	private boolean approved = false;
+
+Constructor: String username, String password, String email, long sSN, String firstName, String lastName,
+			String phoneNumber, String address, int auth
+Constructor: String username, String password, String email, long sSN, String firstName, String lastName,
+			String phoneNumber, String address, int auth, String employeeID, double salary
+
+
+project0.users:
+CREATE TABLE project0.users (
+	username VARCHAR(25) PRIMARY KEY,
+	passhash VARCHAR(500) NOT NULL,
+	email VARCHAR(250) NOT NULL,
+	SSN BIGINT UNIQUE CHECK (SSN >= 0) NOT NULL,
+	first_name VARCHAR(250) NOT NULL,
+	last_name VARCHAR(250) NOT NULL,
+	phone_number VARCHAR(50) NOT NULL,
+	address VARCHAR(500),
+	auth INT DEFAULT -1,
+	FICO INT CHECK (FICO >= 350 AND FICO <= 850),
+	employee_id VARCHAR(50),
+	salary DECIMAL(50,2) CHECK (salary > 0)
+);
+
+
+CREATE TABLE project0.bank_accounts (
+	account_id VARCHAR(250) PRIMARY KEY,
+	balance DECIMAL(50,2) DEFAULT 0,
+	approved BIT,
+	owner BIGINT CHECK (owner > 0) NOT NULL,
+	FOREIGN KEY (owner) REFERENCES project0.users(SSN)
+);
+
+
+project0.user_account_relation
+	SSN BIGINT CHECK (SSN > 0),
+	account_id VARCHAR(250),
+	FOREIGN KEY (SSN) REFERENCES project0.users(SSN),
+	FOREIGN KEY (account_id) REFERENCES project0.bank_accounts(account_id)
+
+
+REQUIREMENTS
+CLIENTS:
+	REGISTER
+	LOGIN
+	DEPOSIT
+	WITHDRAW
+	TRANSFER
+EMPLOYEES:
+	VIEW CUSTOMER INFO
+	APPROVE/DENY ACCOUNTS
+ADMINS:
+	VIEW AND EDIT ALL ACCOUNTS
