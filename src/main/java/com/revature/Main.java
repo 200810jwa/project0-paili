@@ -13,8 +13,8 @@ import com.revature.users.User;
 public class Main {
 	
 	public static void main(String[] args) {
-		resetDB();
-		dbSetup();
+//		resetDB();
+//		dbSetup();
 		
 		UI ui = new UI(new Scanner(System.in));
 		ui.run();

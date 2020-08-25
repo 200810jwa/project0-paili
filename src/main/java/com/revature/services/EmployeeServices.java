@@ -11,7 +11,6 @@ public class EmployeeServices extends ClientServices {
 	
 	public EmployeeServices(User user, BankDAO dao) {
 		super(user, dao);
-		// TODO Auto-generated constructor stub
 	}
 	public boolean approveApplication(BankAccount app) {
 		if (super.user.getAuth() < 0) {

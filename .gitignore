@@ -13,7 +13,7 @@ bin/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp
 
-*.sql
+testing_script.sql
 
 # Package Files #
 .jar
