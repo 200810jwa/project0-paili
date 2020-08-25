@@ -10,8 +10,6 @@ import java.util.Set;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import org.apache.log4j.Logger;
-
 import com.revature.DAO.BankDAO;
 import com.revature.accounts.BankAccount;
 import com.revature.users.User;
@@ -20,8 +18,6 @@ public class UI {
 	private Scanner s;
 	private transient String input = ""; // init to empty string;
 	BankDAO dao = new BankDAO();
-	private static Logger infolog = Logger.getLogger("infoLogger");
-
 	// ------------------------- Constructor -------------------------
 	public UI(Scanner s) {
 		this.s = s;

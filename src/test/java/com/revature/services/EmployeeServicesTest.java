@@ -4,10 +4,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.revature.DAO.BankDAO;
-import com.revature.DAO.DAOUtilities;
 import com.revature.accounts.BankAccount;
 import com.revature.users.User;
 
@@ -82,7 +77,6 @@ public class EmployeeServicesTest {
 		when(dao.getAllBankAccounts()).thenReturn(accounts);
 		
 		
-		Set<BankAccount> totalAccounts = new HashSet<BankAccount>();
 		accounts1.addAll(accounts2);
 	}
 
@@ -128,9 +122,9 @@ public class EmployeeServicesTest {
 		System.out.println(view.size());
 		assertTrue(view.size() == 3);
 		view = es.viewAccountsForUser(teller);
-		for (BankAccount b : view) {
-			System.out.println(b);
-		}
+//		for (BankAccount b : view) {
+//			System.out.println(b);
+//		}
 		assertTrue(view.size() == 2);
 	}
 	

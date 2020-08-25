@@ -1,8 +1,6 @@
 package com.revature.services;
 
 import java.util.Set;
-import org.apache.log4j.Logger;
-
 import com.revature.DAO.BankDAO;
 import com.revature.accounts.BankAccount;
 import com.revature.users.User;

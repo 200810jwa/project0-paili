@@ -103,7 +103,10 @@ public class ClientServices {
 	}
 	
 	public boolean transfer(BankAccount sender, BankAccount receiver, double amount) {
-		if (sender.isApproved() && receiver.isApproved()) {
+		if (amount <= 0 ) {
+			System.out.println("Cannot transfer nonpositive values");
+
+		} else if (sender.isApproved() && receiver.isApproved()) {
 			if (sender.getBalance() < amount) {
 				System.out.println("Insufficient funds. The current balance is " + sender.getBalance());
 				return false;
@@ -111,21 +114,22 @@ public class ClientServices {
 			sender.setBalance(sender.getBalance() - amount);
 			receiver.setBalance(receiver.getBalance() + amount);
 			
-			infolog.info("[" + ip + "]" + user.getUsername() + " transfered " + amount + " from " + sender.getAccountID() 
+			infolog.info("[" + ip + "] " + user.getUsername() + " transfered " + amount + " from " + sender.getAccountID() 
 			+ " to " + receiver.getAccountID() + " New Balances: [" + sender.getAccountID() + ": " + sender.getBalance() + ", "
 			+ receiver.getAccountID() + ": " + receiver.getBalance() + "]");
 			
 			return dao.updateMultipleAccounts(sender,receiver);
-		} else {
+		}  else {
 			System.out.println("Accounts must be approved first");
-			return false;
 		}
+		return false;
 
 	}
 	
 	public boolean applyForAccount() {
 		int n = dao.getBankAccountsFromUser(user).size();
 		BankAccount newAcct = new BankAccount(user.getUsername() + "_" + ++n, 0, user, false);
+		infolog.info("[" + ip + "] " + user.getUsername() + " opened an application.");
 		return dao.addAccount(newAcct);
 	}
 	

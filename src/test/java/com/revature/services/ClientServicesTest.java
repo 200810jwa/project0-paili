@@ -1,11 +1,9 @@
 package com.revature.services;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.sql.PreparedStatement;
 import java.util.HashSet;
 
 import org.junit.After;
@@ -109,12 +107,12 @@ public class ClientServicesTest {
 		assertTrue(cs1.transfer(acc1, acc3, 50));
 		assertTrue(acc3.getBalance() - acc1.getBalance() == 100);
 		assertFalse(cs1.transfer(acc1, acc2, 50));
+		assertFalse(cs1.transfer(acc1, acc3, -10));
 	}
 
 	@Test
 	public void testHasAccount() {
-		HashSet<BankAccount> emptySet = new HashSet<BankAccount>();
-		//c.setAccounts(emptySet);
+		assertFalse(cs1.hasAccount(new User()));
 		assertTrue(cs1.hasAccount(c));
 	}
 
